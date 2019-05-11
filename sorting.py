@@ -60,6 +60,19 @@ def insertion_sort(List):
 		List[j+1] = min_num
 
 	return List
+	
+# O (n*log(n))
+def quick_sort(x):
+    if len(x) == 0 or len(x) == 1:
+        return x
+    pivot =x[int(len(x)/2)]
+    pivot_index = int(len(x)/2)
+    low = [x[i] for i in range(pivot_index) if x[i] <= pivot]
+    low += [x[i] for i in range(pivot_index+1, len(x)) if x[i] <= pivot]
+    high = [x[i] for i in range(pivot_index) if x[i] >pivot]
+    high += [x[i] for i in range(pivot_index+1, len(x)) if x[i] > pivot]
+
+    return quick_sort(low) + [x[pivot_index]] + quick_sort(high)
 x=[2,1,3,10,7]
 
-print(insertion_sort(x))
+print(quick_sort(x))
