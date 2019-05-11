@@ -73,6 +73,6 @@ def quick_sort(x):
     high += [x[i] for i in range(pivot_index+1, len(x)) if x[i] > pivot]
 
     return quick_sort(low) + [x[pivot_index]] + quick_sort(high)
-x=[2,1,3,10,7]
+x=[2,1,3,10,7,1,20,13]
 
-print(quick_sort(x))
+print(mergesort(x))
