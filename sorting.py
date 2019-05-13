@@ -60,19 +60,29 @@ def insertion_sort(List):
 		List[j+1] = min_num
 
 	return List
-	
-# O (n*log(n))
-def quick_sort(x):
-    if len(x) == 0 or len(x) == 1:
-        return x
-    pivot =x[int(len(x)/2)]
-    pivot_index = int(len(x)/2)
-    low = [x[i] for i in range(pivot_index) if x[i] <= pivot]
-    low += [x[i] for i in range(pivot_index+1, len(x)) if x[i] <= pivot]
-    high = [x[i] for i in range(pivot_index) if x[i] >pivot]
-    high += [x[i] for i in range(pivot_index+1, len(x)) if x[i] > pivot]
 
-    return quick_sort(low) + [x[pivot_index]] + quick_sort(high)
+
+def partition(List,Low,High):
+	i = Low - 1
+	pivot = List[High]
+
+	for j in range(Low, High):
+		if List[j] <= pivot:
+			i += 1 
+			List [i], List [j] = List [j], List [i]
+	List [i+1], List [High] = List[High], List [i+1]
+	return i + 1
+
+
+# O (n^2)
+def quick_sort(x,low ,high):
+	if low < high:
+		pivot = partition(x,low,high)
+		quick_sort(x, low, pivot-1)
+		quick_sort(x, pivot+1, high)
+
+
+
 x=[2,1,3,10,7,1,20,13]
-
-print(mergesort(x))
+quick_sort(x, 0, len(x)-1)
+print(x)
