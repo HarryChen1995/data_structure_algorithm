@@ -61,6 +61,12 @@ def insertion_sort(List):
 
 	return List
 
+def bubble_sort(List):
+	for i in range(len(List)):
+		for j in range (len(List)-i-1):
+			if List[j] > List[j+1]:
+				List[j], List[j+1] = List[j+1], List[j]
+
 
 def partition(List,Low,High):
 	i = Low - 1
@@ -83,6 +89,7 @@ def quick_sort(x,low ,high):
 
 
 
-x=[2,1,3,10,7,1,20,13]
-quick_sort(x, 0, len(x)-1)
+x=[50,2,1,3,10,7,1,20,13]
+bubble_sort(x)
 print(x)
+
