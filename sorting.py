@@ -68,7 +68,7 @@ def bubble_sort(List):
 				List[j], List[j+1] = List[j+1], List[j]
 
 
-def partition(List,Low,High):
+def partition(List,Low,High):  # High index as pivot 
 	i = Low - 1
 	pivot = List[High]
 
@@ -79,17 +79,34 @@ def partition(List,Low,High):
 	List [i+1], List [High] = List[High], List [i+1]
 	return i + 1
 
+def partition_2(List,Low,High): # middle index as pivot 
+	i = Low - 1
+	mid = Low + (High-Low)//2
+	pivot = List[mid]
+	for j in range(Low, High+1):
+		if List[j] <pivot:
+			i += 1 
+			List[i], List[j] = List[j], List[i]
+	if i< High:
+		n= len(List)-1-List[::-1].index(pivot)
+		if n-i>0:
+			List [i+1], List[n] = List[n], List [i+1]
+			return i+1
+		else:
+			List [i], List[n] = List[n], List[i]
+			return i 
 
+	return i
 # O (n^2)
 def quick_sort(x,low ,high):
 	if low < high:
-		pivot = partition(x,low,high)
+		pivot = partition_2(x,low,high)
 		quick_sort(x, low, pivot-1)
 		quick_sort(x, pivot+1, high)
 
 
 
-x=[50,2,1,3,10,7,1,20,13]
-bubble_sort(x)
+x=[50,100,1000,2,1,3,10,7,1,20,13]
+quick_sort(x,0, len(x)-1)
 print(x)
 
