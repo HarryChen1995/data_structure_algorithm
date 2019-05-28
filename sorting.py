@@ -84,7 +84,7 @@ def partition_2(List,Low,High): # middle index as pivot
 	mid = Low + (High-Low)//2
 	pivot = List[mid]
 	for j in range(Low, High+1):
-		if List[j] <pivot:
+		if List[j] < pivot:
 			i += 1 
 			List[i], List[j] = List[j], List[i]
 	if i< High:
@@ -106,7 +106,7 @@ def quick_sort(x,low ,high):
 
 
 
-x=[50,100,1000,2,1,3,10,7,1,20,13]
+x=[50,10000,100,1000,2,1,3,10,7,1,5000,20,13]
 quick_sort(x,0, len(x)-1)
 print(x)
 
