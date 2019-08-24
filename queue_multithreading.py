@@ -9,14 +9,14 @@ def func1():
 
 def jobs(q):
     while not q.empty():
-        q.get()
-        func1()
+        task=q.get()
+        task()
         q.task_done()
 
 
 q = Queue()
 for i in range(number_jobs):
-    q.put(i)
+    q.put(func1)
 
 
 
