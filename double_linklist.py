@@ -58,23 +58,37 @@ class LinkList:
                         break
                     
                     current = current.Next
+    def delete_multiple_from_list(self):
+        current =self.head
+        while current:
+            runner = current
+            while runner.Next:
+                if runner.Next != self.tail and runner.Next.value == current.value:
+                    runner.Next.Next.Prev= runner
+                    runner.Next=runner.Next.Next
+                elif runner.Next == self.tail and runner.Next.value == current.value:
+                     runner.Next = None
+                     self.tail = runner
+                else:
+                        runner = runner.Next
+            current=current.Next
+
 
 
 
 ll = LinkList()
-ll.add(7)
-ll.add(4)
+ll.add(3)
+ll.add(3)
+ll.add(3)
+ll.add(3)
+ll.add(8)
 ll.add(5)
+ll.add(8)
+ll.add(3)
+ll.add(3)
 ll.add(10)
+ll.add(8)
+ll.add(3)
 print(ll)
-current= ll.tail
-
-while current:
-    print(current.value)
-    current=current.Prev
-ll.delete_from_list(7)
+ll.delete_multiple_from_list()
 print(ll)
-current= ll.tail
-while current:
-    print(current.value)
-    current=current.Prev
