@@ -39,24 +39,27 @@ class LinkList:
 
         if self.head != None:
             
-            if self.head.value == value:
-                self.head = self.head.Next
-                self.head.Prev=None
+            current = self.head 
+            while current:
+                if self.head.value == value:
+                    self.head = self.head.Next
+                    self.head.Prev=None
+                current= current.Next
 
-            else:
-                current = self.head
+            
+            current = self.head
 
-                while current.Next:
+            while current.Next:
 
-                    if current.Next!= self.tail and current.Next.value == value:
+                if current.Next!= self.tail and current.Next.value == value:
 
-                        current.Next.Next.Prev= current
-                        current.Next = current.Next.Next
-                    if current.Next == self.tail and current.Next.value == value:
-                        current.Next=None
-                        self.tail = current
-                        break
-                    
+                    current.Next.Next.Prev= current
+                    current.Next = current.Next.Next
+                elif current.Next == self.tail and current.Next.value == value:
+                    current.Next=None
+                    self.tail = current
+                
+                else:
                     current = current.Next
     def delete_multiple_from_list(self):
         current =self.head
@@ -77,18 +80,22 @@ class LinkList:
 
 
 ll = LinkList()
+ll.add(100)
 ll.add(3)
-ll.add(3)
-ll.add(3)
-ll.add(3)
-ll.add(8)
-ll.add(5)
-ll.add(8)
 ll.add(3)
 ll.add(3)
 ll.add(10)
 ll.add(8)
 ll.add(3)
+ll.add(3)
 print(ll)
-ll.delete_multiple_from_list()
+ll.delete_from_list(3)
 print(ll)
+
+current = ll.tail
+string =""
+while current:
+    string += str(current.value)+"->"
+    current = current.Prev 
+
+print(string[:-2])
