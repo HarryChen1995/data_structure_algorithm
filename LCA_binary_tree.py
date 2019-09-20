@@ -1,27 +1,23 @@
 
 
 class Tree_Node:
-    def __init__(self, value = None):
+    def __init__(self, value):
         self.value = value
         self.left_node = None
         self.right_node = None
     def insert_node(self,value):
-
-        if self.value == None:
-            self.value = value
-        else:
-            if  self.value == value:
-                self.value = value 
-            elif self.value > value:
-                if self.left_node == None:
-                    self.left_node = Tree_Node(value)
-                else:
-                    self.left_node.insert_node(value)
+        if  self.value == value:
+            self.value = value 
+        elif self.value > value:
+            if self.left_node == None:
+                self.left_node = Tree_Node(value)
             else:
-                if self.right_node == None:
-                    self.right_node = Tree_Node(value)
-                else:
-                    self.right_node.insert_node(value)
+                self.left_node.insert_node(value)
+        else:
+            if self.right_node == None:
+                self.right_node = Tree_Node(value)
+            else:
+                self.right_node.insert_node(value)
     def print_all_node(self):
         
         if self.value:
