@@ -29,7 +29,7 @@ class LinkList:
 
     def add(self,value):
         if self.head is None:
-            self.head = self.tail = LinkListNode(value,Prev=self.tail)
+            self.head = self.tail = LinkListNode(value,Prev=None)
         else:
             self.tail.Next=LinkListNode(value,Prev=self.tail)
             self.tail = self.tail.Next
