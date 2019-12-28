@@ -13,13 +13,13 @@ class Graph:
         def __str__(self):
             return str(dict(self.graph))
 
-        def DBS_Recursive(self, V, path, visited = defaultdict(lambda:False)):
+        def DFS_Recursive(self, V, path, visited = defaultdict(lambda:False)):
             visited[V] = True 
             path.append(V)
             for i in self.graph[V]:
                 if not visited[i]:
-                    self.DBS_Recursive(i, path, visited)
-        def DBS_Stack(self, V):
+                    self.DFS_Recursive(i, path, visited)
+        def DFS_Stack(self, V):
             path = []
             vistied = defaultdict(lambda:False)
             Stack = [V]
@@ -33,7 +33,7 @@ class Graph:
                     if not vistied[i]:
                         Stack.append(i)
             return path
-        def DBS_Queue(self, V):
+        def BFS_Queue(self, V):
             path = []
             vistied = defaultdict(lambda:False)
             Queue = [V]
@@ -65,7 +65,7 @@ g.add_edge("A", "C")
 g.add_edge("C", "D")
 g.add_edge("C", "E")
 path = []
-g.DBS_Recursive("A", path)
+g.DFS_Recursive("A", path)
 print(path)
-print(g.DBS_Stack("A"))
-print(g.DBS_Queue("A"))
+print(g.DFS_Stack("A"))
+print(g.BFS_Queue("A"))
