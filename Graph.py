@@ -8,11 +8,8 @@ class Graph:
                 self.graph[A].append(B)
             else:
                 raise Exception("Node " + B + " is already connected to Node  "+A)
-
-
         def __str__(self):
             return str(dict(self.graph))
-
         def DFS_Recursive(self, V, path, visited = defaultdict(lambda:False)):
             visited[V] = True 
             path.append(V)
@@ -21,42 +18,30 @@ class Graph:
                     self.DFS_Recursive(i, path, visited)
         def DFS_Stack(self, V):
             path = []
-            vistied = defaultdict(lambda:False)
+            visited = defaultdict(lambda:False)
             Stack = [V]
             while len(Stack):
                 k = Stack.pop()
-                if not vistied[k]:
+                if not visited[k]:
                     path.append(k)
-                    vistied[k] = True
-
+                    visited[k] = True
                 for i in self.graph[k]:
-                    if not vistied[i]:
                         Stack.append(i)
             return path
         def BFS_Queue(self, V):
             path = []
-            vistied = defaultdict(lambda:False)
+            visited = defaultdict(lambda:False)
             Queue = [V]
+            visited[V] = True
+            path.append(V)
             while len(Queue):
                 k = Queue.pop(0)
-                if not vistied[k]:
-                    path.append(k)
-                    vistied[k] = True
-
                 for i in self.graph[k]:
-                    if not vistied[i]:
+                    if not visited[i]:
                         Queue.append(i)
+                        path.append(i)
+                        visited[i] = True 
             return path
-
-
-
-
-
-
-
-            
-
-
 
 
 g = Graph()
@@ -64,6 +49,9 @@ g.add_edge("A", "B")
 g.add_edge("A", "C")
 g.add_edge("C", "D")
 g.add_edge("C", "E")
+g.add_edge("E", "F")
+g.add_edge("E", "G")
+g.add_edge("A", "G")
 path = []
 g.DFS_Recursive("A", path)
 print(path)
