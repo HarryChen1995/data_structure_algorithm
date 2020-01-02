@@ -26,6 +26,7 @@ class Graph:
                     path.append(k)
                     visited[k] = True
                 for i in self.graph[k]:
+                    if not visited[i]:
                         Stack.append(i)
             return path
         def BFS_Queue(self, V):
