@@ -1,3 +1,4 @@
+#time complexity O(nlog(n))
 def Sum2(nums, target):
 
     arr = []
