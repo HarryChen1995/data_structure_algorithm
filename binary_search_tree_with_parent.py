@@ -27,6 +27,34 @@ class tree:
             parent.left = insert_node
         else:
             parent.right = insert_node
+    def transplant(self, node_A, node_B):
+        if node_A.parent == None:
+            self.root = node_B
+        elif node_A == node_A.parent.left:
+            node_A.parent.left = node_B
+        else:
+            node_A.parent.right = node_B
+        if node_B != None:
+            node_B.parent = node_A.parent 
+
+    def delete_node(self, data):
+        node = self.search(data)
+        if node == None:
+           print("cant not delete node")
+           return
+        if node.left == None:
+            self.transplant(node, node.right)
+        elif node.right == None:
+            self.transplant(node, node.left)
+        else:
+            successor= self.successor_node(node.data)
+            if node.right != successor:
+                self.transplant(successor, successor.right)
+                successor.right = node.right
+                successor.right.parent = successor
+            self.transplant(node, successor)
+            successor.left = node.left
+            successor.left.parent = successor
     def minimum_node(self):
         current_node = self.root
         while current_node.left != None:
@@ -46,7 +74,6 @@ class tree:
                 current_node = current_node.right
         return current_node
     def successor_node(self, data):
-        
         current_node = self.search(data)
         if current_node == None:
             return current_node
@@ -75,8 +102,7 @@ t.insert_node(13)
 t.insert_node(14)
 t.insert_node(5)
 t.insert_node(6)
-print(t.minimum_node().data)
-print(t.maximum_node().data)
-print(t.search(100))
-print(t.successor_node(5))
+tree.in_order_travel(t.root)
+t.delete_node(10)
+print("after delete node 10")
 tree.in_order_travel(t.root)
