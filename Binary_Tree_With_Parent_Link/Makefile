@@ -1,8 +1,8 @@
 main: main.o tree.o node.o
 	g++ -o main main.o tree.o node.o
 
-main.o: main.cpp tree.cpp node.cpp
-	g++ -fpic -c main.cpp tree.cpp -I./tree node.cpp -I./node
+main.o: main.cpp
+	g++ -fpic -c main.cpp -I./tree  -I./node
 
 node.o: node.cpp
 	g++ -fpic -c node.cpp -I./node

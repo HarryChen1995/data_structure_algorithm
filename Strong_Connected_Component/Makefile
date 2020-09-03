@@ -2,8 +2,8 @@
 main: main.o graph.o vertex.o
 	g++ -o main -std=c++14 main.o graph.o vertex.o
 
-main.o: main.cpp graph.cpp vertex.cpp 
-	g++ -c -std=c++14 main.cpp graph.cpp vertex.cpp -I.
+main.o: main.cpp 
+	g++ -c -std=c++14 main.cpp -I.
 
 graph.o: graph.cpp
 	g++ -c -std=c++14 graph.cpp -I.
